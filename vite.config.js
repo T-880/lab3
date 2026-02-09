@@ -7,5 +7,14 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         emptyOutDir: true,
-    },
+        rollupOptions: {
+            input: {
+                main: 'src/index.html',
+                sass: 'src/sass.html'
+            },
+            output: {
+                assetFileNames: 'assets/[name]-[hash][extname]'
+            }
+        }
+    }
 });
