@@ -5,7 +5,7 @@ export default defineConfig({
     base: '/lab3/',
     plugins: [imagetools()],
     build: {
-        outDir: 'dist',
+        outDir: 'docs',
         emptyOutDir: true,
         rollupOptions: {
             input: {
