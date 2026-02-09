@@ -1,3 +1,5 @@
+import '../scss/main.scss';
+
 import img1Url from '../images/img1.webp?url';
 import img2Url from '../images/img2.webp?url';
 
