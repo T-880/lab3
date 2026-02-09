@@ -1,0 +1,17 @@
+@use "variables";
+
+@mixin respond-mobile {
+  @media (max-width: variables.$mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin theme-colors($mode) {
+  @if $mode == light {
+    background-color: variables.$light-bg;
+    color: variables.$light-text;
+  } @else {
+    background-color: variables.$dark-bg;
+    color: variables.$dark-text;
+  }
+}
