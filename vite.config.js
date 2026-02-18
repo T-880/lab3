@@ -10,7 +10,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'src/index.html',
-        sass: 'src/sass.html'
+        sass: 'src/sass.html',
+        anim: 'src/animering.html'
       }
     }
   }
