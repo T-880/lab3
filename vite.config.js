@@ -12,6 +12,7 @@ export default defineConfig({
         main: 'src/index.html',
         sass: 'src/sass.html',
         anim: 'src/animering.html'
+
       }
     }
   }
