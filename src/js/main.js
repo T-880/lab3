@@ -15,8 +15,8 @@ const animateBtn = document.getElementById("animateBtn");
 const clickBox = document.querySelector(".click-box");
 
 animateBtn.addEventListener("click", () => {
-  clickBox.style.transform = "translateY(-50px)";
+  clickBox.classList.add("active");
   setTimeout(() => {
-    clickBox.style.transform = "translateY(0)";
+    clickBox.classList.remove("active");
   }, 500);
 });

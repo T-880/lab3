@@ -1,9 +1,10 @@
 @use "variables";
+@use "sass:color";
 
 // Textfärg-animation
 @keyframes colorShift {
   0%   { color: variables.$light-primary; }
-  50%  { color: lighten(variables.$light-primary, 30%); }
+  50%  { color: color.adjust(variables.$light-primary, $lightness: 30%); }
   100% { color: variables.$light-primary; }
 }
 
@@ -45,7 +46,11 @@
 .click-box {
   width: 80px;
   height: 80px;
-  background-color: darken(variables.$light-primary, 20%);
+  background-color: color.adjust(variables.$light-primary, $lightness: -20%);
   margin: 1rem auto;
   transition: transform 0.5s ease;
+}
+
+.click-box.active {
+  transform: translateY(-50px);
 }
