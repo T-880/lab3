@@ -1,0 +1,51 @@
+@use "variables";
+
+// Textfärg-animation
+@keyframes colorShift {
+  0%   { color: variables.$light-primary; }
+  50%  { color: lighten(variables.$light-primary, 30%); }
+  100% { color: variables.$light-primary; }
+}
+
+.color-animation {
+  animation: colorShift 3s infinite;
+}
+
+// Ruta som rör sig
+@keyframes moveBox {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(200px); }
+  100% { transform: translateX(0); }
+}
+
+.moving-box {
+  width: 100px;
+  height: 100px;
+  background-color: variables.$light-primary;
+  margin: 2rem auto;
+  animation: moveBox 4s infinite;
+}
+
+// Knapp + ruta interaktiv
+#animateBtn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: variables.$light-primary;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#animateBtn:hover {
+  transform: scale(1.1);
+}
+
+.click-box {
+  width: 80px;
+  height: 80px;
+  background-color: darken(variables.$light-primary, 20%);
+  margin: 1rem auto;
+  transition: transform 0.5s ease;
+}

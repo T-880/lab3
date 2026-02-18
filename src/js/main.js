@@ -10,3 +10,13 @@ const gallery = document.getElementById('gallery');
   img.src = src;
   gallery.appendChild(img);
 });
+
+const animateBtn = document.getElementById("animateBtn");
+const clickBox = document.querySelector(".click-box");
+
+animateBtn.addEventListener("click", () => {
+  clickBox.style.transform = "translateY(-50px)";
+  setTimeout(() => {
+    clickBox.style.transform = "translateY(0)";
+  }, 500);
+});
