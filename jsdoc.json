@@ -1,0 +1,10 @@
+{
+  "source": {
+    "include": ["src/js/diagram.js"],
+    "includePattern": ".js$"
+  },
+  "opts": {
+    "destination": "JSDoc",
+    "recurse": true
+  }
+}
