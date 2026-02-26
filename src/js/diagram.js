@@ -18,7 +18,7 @@ function prepareChartData(data, type, count) {
     .filter(item => item.type === type)
     .map(item => ({
       name: item.name,
-      total: Number(item.applicantsTotal.trim())
+      total: Number(item.applicantsTotal.trim()) || 0
     }))
     .sort((a, b) => b.total - a.total)
     .slice(0, count);
