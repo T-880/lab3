@@ -88,6 +88,21 @@ p {
   height: auto;
 }
 
+// Diagram
+canvas {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 2rem auto;
+}
+
+@media (min-width: 1024px) {
+  canvas {
+    max-width: 800px;
+  }
+}
+
 // Gallery layout
 .gallery {
   display: flex;
