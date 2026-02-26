@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto';
 
 async function fetchStatistics() {
   try {
-    const response = await fetch('https://mallarmiun.github.io/Frontend-baserad-webbutveckling/Moment%205%20-%20Dynamiska%20webbutveckling/statistik_sokande_ht25.json');
+    const response = await fetch('https://mallarmiun.github.io/Frontend-baserad-webbutveckling/Moment%205%20-%20Dynamiska%20webbplatser/statistik_sokande_ht25.json');
     if (!response.ok) throw new Error('Kunde inte hämta data: ' + response.status);
     const data = await response.json();
     return data;
