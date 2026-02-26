@@ -3,9 +3,10 @@ import Chart from 'chart.js/auto';
 
 async function fetchStatistics() {
   try {
-    const response = await fetch('/lab3/statistik_sokande_ht25.json');
+    const response = await fetch(import.meta.env.BASE_URL + 'statistik_sokande_ht25.json');
     if (!response.ok) throw new Error('Kunde inte hämta data: ' + response.status);
     const data = await response.json();
+    console.log('Data hämtad:', data);
     return data;
   } catch (error) {
     console.error(error);
