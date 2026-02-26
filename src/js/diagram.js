@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
           borderWidth: 1
         }]
       },
-      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+      options: { responsive: true, 
+        maintainAspectRatio: false, 
+        scales: { y: { beginAtZero: true } } }
     });
 
     const programsCtx = document.getElementById('programsChart').getContext('2d');
@@ -32,7 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
           borderWidth: 1
         }]
       },
-      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+      options: { responsive: true, 
+        maintainAspectRatio: false,
+        scales: { y: { beginAtZero: true } } }
     });
   }
 });
