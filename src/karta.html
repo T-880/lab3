@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./assets/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Startsida</title>
-<script type="module" src="./js/main.js"></script>
-
+    <title>Karta</title>
+    <script type="module" src="./js/main.js"></script>
   </head>
   <body>
     <nav>
@@ -23,10 +22,15 @@
     </nav>
 
     <main>
-      <h1>Startsida</h1>
-      <p>Detta är startsidan för min fiktiva webbplats.</p>
-    </main>
+      <h1>Karta</h1>
 
-    <div class="gallery" id="gallery"></div>
+      <form id="mapForm">
+        <label for="locationInput">Sök plats:</label>
+        <input type="text" id="locationInput" required />
+        <button type="submit">Sök</button>
+      </form>
+
+      <div id="mapContainer"></div>
+    </main>
   </body>
 </html>

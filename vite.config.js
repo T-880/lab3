@@ -11,8 +11,10 @@ export default defineConfig({
       input: {
         main: 'src/index.html',
         sass: 'src/sass.html',
-        anim: 'src/animering.html'
-
+        anim: 'src/animering.html',
+        diag: 'src/diagram.html',
+        kart: 'src/karta.html'
+        
       }
     }
   }
