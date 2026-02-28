@@ -1,1 +1,0 @@
-import"./main-CEiFkomo.js";const e=document.getElementById("animateBtn"),t=document.querySelector(".click-box");e.addEventListener("click",()=>{t.classList.add("active"),setTimeout(()=>{t.classList.remove("active")},500)});

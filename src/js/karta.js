@@ -1,4 +1,8 @@
 import '../scss/main.scss';
+
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 /**
  * Hämtar koordinater från Nominatim API baserat på sökterm.
  * @async
@@ -23,8 +27,8 @@ async function fetchCoordinates(location) {
     }
 
     return {
-      lat: data[0].lat,
-      lon: data[0].lon
+      lat: parseFloat(data[0].lat),
+      lon: parseFloat(data[0].lon)
     };
 
   } catch (error) {
@@ -52,14 +56,16 @@ function showMap(lat, lon) {
 
     const bbox = `${lonNum-0.01},${latNum-0.01},${lonNum+0.01},${latNum+0.01}`;
 
-  mapContainer.innerHTML = `
-    <iframe
-      width="100%"
-      height="450"
-      style="border:0"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latNum},${lonNum}">
-    </iframe>
-  `;
+  mapContainer.innerHTML = '';
+const map = L.map(mapContainer).setView([lat, lon], 13);
+
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+   L.marker([lat, lon]).addTo(map)
+    .bindPopup("Sökplats")
+    .openPopup();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
