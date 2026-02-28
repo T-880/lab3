@@ -2,6 +2,15 @@ import '../scss/main.scss';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+
+/**
+ * GLOBALA VARIABLER
+ * map: Leaflet-kartan
+ * marker: Leaflet-markören
+ */
+let map;
+let marker;
+
 /**
  * Hämtar koordinater för en plats via Nominatim API.
  * @async
@@ -30,30 +39,43 @@ async function fetchCoordinates(location) {
 
 /**
  * Visar en Leaflet-karta och placerar en markör på angivna koordinater.
- * @function showMap
+ * @function initMap
  * @param {number} lat - Latitud för platsen.
  * @param {number} lon - Longitud för platsen.
+ * @param {string} [popupText='Sökplats'] - Text som ska visas i markörens popup.
  */
-function showMap(lat, lon) {
-    const container = document.getElementById('mapContainer');
-    container.innerHTML = '';
+function initMap(lat, lon, popupText = 'Sökplats') {
 
-    const map = L.map(container).setView([lat, lon], 13);
+    map = L.map('mapContainer').setView([lat, lon], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    L.marker([lat, lon]).addTo(map)
-        .bindPopup('Sökplats')
+    marker = L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(popupText)
         .openPopup();
+}
+/**
+ * Uppdaterar markören och centrerar kartan på nya koordinater.
+ * @function updateMarker
+ * @param {number} lat - Latitud för den nya platsen.
+ * @param {number} lon - Longitud för den nya platsen.
+ * @param {string} [popupText='Sökplats'] - Text som ska visas i markörens popup.
+ */
+function updateMarker(lat, lon, popupText = 'Sökplats') {
+    if (marker && map) {
+        marker.setLatLng([lat, lon]).setPopupContent(popupText).openPopup();
+        map.setView([lat, lon], 13);
+    }
 }
 
 /**
  * Initierar sökformuläret och hanterar användarinteraktion.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    showMap(59.3293, 18.0686);
+    initMap(59.3293, 18.0686, 'Stockholm');
 
     const form = document.getElementById('mapForm');
 
@@ -69,6 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        showMap(coords.lat, coords.lon);
+        updateMarker(coords.lat, coords.lon, input);
     });
 });
