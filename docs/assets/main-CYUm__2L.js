@@ -1,0 +1,1 @@
+import"./main-CEiFkomo.js";const l="/lab3/assets/img1-xW-6NUXU.webp",m="/lab3/assets/img2-BQowHSWj.webp",s=document.getElementById("gallery");[l,m].forEach(t=>{const e=document.createElement("img");e.src=t,s.appendChild(e)});

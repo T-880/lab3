@@ -1,3 +1,4 @@
+import '../scss/main.scss';
 /**
  * Hämtar koordinater från Nominatim API baserat på sökterm.
  * @async
@@ -41,12 +42,15 @@ async function fetchCoordinates(location) {
 function showMap(lat, lon) {
   const mapContainer = document.getElementById("mapContainer");
 
+  const latNum = Number(lat);
+  const lonNum = Number(lon);
+
   mapContainer.innerHTML = `
     <iframe
       width="100%"
       height="450"
       style="border:0"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.01}%2C${lat - 0.01}%2C${Number(lon) + 0.01}%2C${Number(lat) + 0.01}&layer=mapnik&marker=${lat}%2C${lon}">
+      src="https://www.openstreetmap.org/export/embed.html?bbox=${lonNum-0.01}%2C${latNum-0.01}%2C${lonNum+0.01}%2C${latNum+0.01}&layer=mapnik&marker=${latNum}%2C${lonNum}">
     </iframe>
   `;
 }
