@@ -57,7 +57,7 @@ function showMap(lat, lon) {
       width="100%"
       height="450"
       style="border:0"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${latNum},${lonNum}">
+      src="https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${latNum},${lonNum}">
     </iframe>
   `;
 }

@@ -3,6 +3,6 @@ import"./main-CEiFkomo.js";async function i(o){try{const t=await fetch(`https://
       width="100%"
       height="450"
       style="border:0"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(a)}&layer=mapnik&marker=${e},${r}">
+      src="https://www.openstreetmap.org/export/embed.html?bbox=${a}&layer=mapnik&marker=${e},${r}">
     </iframe>
   `}document.addEventListener("DOMContentLoaded",()=>{document.getElementById("mapForm").addEventListener("submit",async t=>{t.preventDefault();const n=document.getElementById("locationInput").value,e=await i(n);if(!e){alert("Platsen hittades inte.");return}s(e.lat,e.lon)})});
