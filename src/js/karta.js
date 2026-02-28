@@ -42,15 +42,22 @@ async function fetchCoordinates(location) {
 function showMap(lat, lon) {
   const mapContainer = document.getElementById("mapContainer");
 
-  const latNum = Number(lat);
-  const lonNum = Number(lon);
+  const latNum = parseFloat(lat);
+  const lonNum = parseFloat(lon);
+
+  if (isNaN(latNum) || isNaN(lonNum)) {
+    alert("Ogiltiga koordinater");
+    return; 
+    }
+
+    const bbox = `${lonNum-0.01},${latNum-0.01},${lonNum+0.01},${latNum+0.01}`;
 
   mapContainer.innerHTML = `
     <iframe
       width="100%"
       height="450"
       style="border:0"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=${lonNum-0.01}%2C${latNum-0.01}%2C${lonNum+0.01}%2C${latNum+0.01}&layer=mapnik&marker=${latNum}%2C${lonNum}">
+      src="https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${latNum},${lonNum}">
     </iframe>
   `;
 }
