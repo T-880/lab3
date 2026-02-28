@@ -1,5 +1,8 @@
 import '../scss/main.scss';
 
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 /**
  * Hämtar koordinater från Nominatim API baserat på sökterm.
  * @async
@@ -48,7 +51,7 @@ mapContainer.innerHTML = "";
  const map = L.map(mapContainer).setView([lat, lon], 13);
 
  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   L.marker([lat, lon]).addTo(map)
