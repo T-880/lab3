@@ -1,8 +1,5 @@
 import '../scss/main.scss';
 
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
 /**
  * Hämtar koordinater från Nominatim API baserat på sökterm.
  * @async

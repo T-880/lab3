@@ -1,45 +1,50 @@
 <!doctype html>
 <html lang="sv">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./assets/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Karta</title>
 
-    <script type="module" src="./js/karta.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./assets/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karta</title>
 
-    <style>
-      #mapContainer {
-        width: 100%;
-        height: 500px;
-        margin-top: 1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="./index.html">Hem</a></li>
-        <li><a href="#">Om</a></li>
-        <li><a href="#">Tjänster</a></li>
-        <li><a href="./sass.html">SASS</a></li>
-        <li><a href="./animering.html">Animering</a></li>
-        <li><a href="./diagram.html">Diagram</a></li>
-        <li><a href="./karta.html">Karta</a></li>
-        <li><a href="#">Kontakt</a></li>
-      </ul>
-    </nav>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script type="module" src="./js/karta.js"></script>
 
-    <main>
-      <h1>Karta</h1>
+  <style>
+    #mapContainer {
+      width: 100%;
+      height: 500px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
 
-      <form id="mapForm">
-        <label for="locationInput">Sök plats:</label>
-        <input type="text" id="locationInput" required />
-        <button type="submit">Sök</button>
-      </form>
+<body>
+  <nav>
+    <ul>
+      <li><a href="./index.html">Hem</a></li>
+      <li><a href="#">Om</a></li>
+      <li><a href="#">Tjänster</a></li>
+      <li><a href="./sass.html">SASS</a></li>
+      <li><a href="./animering.html">Animering</a></li>
+      <li><a href="./diagram.html">Diagram</a></li>
+      <li><a href="./karta.html">Karta</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+  </nav>
 
-      <div id="mapContainer"></div>
-    </main>
-  </body>
+  <main>
+    <h1>Karta</h1>
+
+    <form id="mapForm">
+      <label for="locationInput">Sök plats:</label>
+      <input type="text" id="locationInput" required />
+      <button type="submit">Sök</button>
+    </form>
+
+    <div id="mapContainer"></div>
+  </main>
+</body>
+
 </html>
