@@ -1,76 +1,74 @@
 import '../scss/main.scss';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 /**
- * Hämtar koordinater från Nominatim API baserat på sökterm.
+ * Hämtar koordinater för en plats via Nominatim API.
  * @async
  * @function fetchCoordinates
- * @param {string} location - Platsen som användaren söker efter
- * @returns {Promise<{lat: string, lon: string} | null>}
+ * @param {string} location - Namnet på platsen som användaren söker.
+ * @returns {Promise<{lat: number, lon: number} | null>} Objekt med latitude och longitude eller null om platsen inte hittas.
  */
 async function fetchCoordinates(location) {
-  try {
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`
-    );
+    try {
+        const res = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`
+        );
+        const data = await res.json();
 
-    if (!response.ok) {
-      throw new Error("Fel vid hämtning av koordinater");
+        if (!data.length) return null;
+
+        return {
+            lat: parseFloat(data[0].lat),
+            lon: parseFloat(data[0].lon)
+        };
+    } catch (err) {
+        console.error(err);
+        return null;
     }
-
-    const data = await response.json();
-
-    if (data.length === 0) {
-      return null;
-    }
-
-    return {
-      lat: parseFloat(data[0].lat),
-      lon: parseFloat(data[0].lon)
-    };
-
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 }
 
 /**
- * Visar karta med markör via OpenStreetMap.
+ * Visar en Leaflet-karta och placerar en markör på angivna koordinater.
  * @function showMap
- * @param {string} lat
- * @param {string} lon
+ * @param {number} lat - Latitud för platsen.
+ * @param {number} lon - Longitud för platsen.
  */
 function showMap(lat, lon) {
-  const mapContainer = document.getElementById("mapContainer");
+    const container = document.getElementById('mapContainer');
+    container.innerHTML = '';
 
-mapContainer.innerHTML = "";
+    const map = L.map(container).setView([lat, lon], 13);
 
- const map = L.map(mapContainer).setView([lat, lon], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
- L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  L.marker([lat, lon]).addTo(map)
-    .bindPopup("Sökplats")
-    .openPopup();
+    L.marker([lat, lon]).addTo(map)
+        .bindPopup('Sökplats')
+        .openPopup();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("mapForm");
+/**
+ * Initierar sökformuläret och hanterar användarinteraktion.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    showMap(59.3293, 18.0686);
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    const form = document.getElementById('mapForm');
 
-    const input = document.getElementById("locationInput").value;
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = document.getElementById('locationInput').value.trim();
+        if (!input) return;
 
-    const coordinates = await fetchCoordinates(input);
+        const coords = await fetchCoordinates(input);
 
-    if (!coordinates) {
-      alert("Platsen hittades inte.");
-      return;
-    }
+        if (!coords) {
+            alert('Platsen hittades inte.');
+            return;
+        }
 
-    showMap(coordinates.lat, coordinates.lon);
-  });
+        showMap(coords.lat, coords.lon);
+    });
 });
