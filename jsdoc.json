@@ -1,7 +1,8 @@
 {
   "source": {
-    "include": ["src/js/diagram.js"],
-    "includePattern": ".js$"
+    "include": ["src/js"],
+    "includePattern": ".js$",
+    "recurse": true
   },
   "opts": {
     "destination": "JSDoc",
